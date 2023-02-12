@@ -9,7 +9,8 @@ import subprocess
 from data import DATA_LIST
 
 COOKIE = os.getenv("COOKIE", "")
-OUTPUT_DIR = os.getenv("OUTPUT_DIR", "${HOME}/Downloads/data")
+HOME_DIR = os.getenv("HOME", "")
+OUTPUT_DIR = os.getenv("OUTPUT_DIR", f"{HOME_DIR}/Downloads/data")
 START = int(os.getenv("START", 1))
 
 def get_command(mode: str) -> str:
