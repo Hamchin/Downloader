@@ -2,13 +2,15 @@
 
 ## 使用方法
 
-```
-python main.py --mode [video|image] --data-type [simple|standard]
+```sh
+python main.py --data-type [list|dict] --input-type [simple|standard] --output-type [video|image]
 ```
 
-## 補足
+## 設定方法
 
-### --data-type = simple
+### --data-type = list
+
+#### --input-type = simple
 
 ```py
 DATA_LIST = [
@@ -16,7 +18,7 @@ DATA_LIST = [
 ]
 ```
 
-### --data-type = standard
+#### --input-type = standard
 
 ```py
 DATA_LIST = [
@@ -25,4 +27,29 @@ DATA_LIST = [
         "2023-01-01.mp4",
     ),
 ]
+```
+
+### --data-type = dict
+
+#### --input-type = simple
+
+```py
+DATA_DICT = {
+    "0001": [
+        "https://XXXXXXXX/videos/XXXXXXXX.m3u8",
+    ],
+}
+```
+
+#### --input-type = standard
+
+```py
+DATA_DICT = {
+    "0001": [
+        (
+            "https://XXXXXXXX/videos/XXXXXXXX.m3u8",
+            "2023-01-01.mp4",
+        ),
+    ],
+}
 ```
