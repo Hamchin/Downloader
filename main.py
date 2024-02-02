@@ -3,14 +3,13 @@ import sys
 sys.dont_write_bytecode = True
 
 import argparse
+import json
 import os
 import subprocess
 
-from data_dict import DATA_DICT
-from data_list import DATA_LIST
-
 COOKIE = os.getenv("COOKIE", "")
 HOME_DIR = os.getenv("HOME", "")
+DATA_PATH = os.getenv("DATA_PATH", "data.json")
 OUTPUT_BASE_DIR = os.getenv("OUTPUT_BASE_DIR", f"{HOME_DIR}/Downloads/data")
 START = int(os.getenv("START", 1))
 
@@ -56,17 +55,16 @@ def main() -> None:
     input_type = args.input_type
     output_type = args.output_type
 
+    data = json.load(open(DATA_PATH))
     command = get_command(output_type)
 
     if data_type == "list":
-        data_list = DATA_LIST
-        download(data_list, input_type, output_type, command)
-    elif data_type == "dict":
-        for dir_name, data_list in DATA_DICT.items():
+        download(data, input_type, output_type, command)
+
+    if data_type == "dict":
+        for dir_name, data_list in data.items():
             output_dir = os.path.join(OUTPUT_BASE_DIR, dir_name)
             download(data_list, input_type, output_type, command, output_dir)
-    else:
-        raise ValueError(f"INVALID_DATA_TYPE: {data_type}")
 
 
 if __name__ == "__main__":
