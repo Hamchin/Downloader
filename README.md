@@ -12,20 +12,20 @@ python main.py --data-type [list|dict] --input-type [simple|standard] --output-t
 
 #### --input-type = simple
 
-```py
-DATA_LIST = [
+```json
+[
     "https://XXXXXXXX/videos/XXXXXXXX.m3u8",
 ]
 ```
 
 #### --input-type = standard
 
-```py
-DATA_LIST = [
-    (
+```json
+[
+    [
         "https://XXXXXXXX/videos/XXXXXXXX.m3u8",
-        "2023-01-01.mp4",
-    ),
+        "2023-01-01.mp4"
+    ],
 ]
 ```
 
@@ -33,8 +33,8 @@ DATA_LIST = [
 
 #### --input-type = simple
 
-```py
-DATA_DICT = {
+```json
+{
     "0001": [
         "https://XXXXXXXX/videos/XXXXXXXX.m3u8",
     ],
@@ -43,13 +43,13 @@ DATA_DICT = {
 
 #### --input-type = standard
 
-```py
-DATA_DICT = {
+```json
+{
     "0001": [
-        (
+        [
             "https://XXXXXXXX/videos/XXXXXXXX.m3u8",
-            "2023-01-01.mp4",
-        ),
+            "2023-01-01.mp4"
+        ],
     ],
 }
 ```
