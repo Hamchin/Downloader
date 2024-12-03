@@ -3,14 +3,14 @@
 ## 使用方法
 
 ```sh
-python main.py --data-type [list|dict] --input-type [simple|standard] --output-type [video|image]
+python main.py --input-format [simple|standard]
 ```
 
-## 設定方法
+## データ形式
 
-### --data-type = list
+### List
 
-#### --input-type = simple
+#### Simple
 
 ```json
 [
@@ -18,20 +18,20 @@ python main.py --data-type [list|dict] --input-type [simple|standard] --output-t
 ]
 ```
 
-#### --input-type = standard
+#### Standard
 
 ```json
 [
     [
         "https://XXXXXXXX/videos/XXXXXXXX.m3u8",
-        "2023-01-01.mp4"
+        "2024-01-01.mp4"
     ],
 ]
 ```
 
-### --data-type = dict
+### Dict
 
-#### --input-type = simple
+#### Simple
 
 ```json
 {
@@ -41,14 +41,14 @@ python main.py --data-type [list|dict] --input-type [simple|standard] --output-t
 }
 ```
 
-#### --input-type = standard
+#### Standard
 
 ```json
 {
     "0001": [
         [
             "https://XXXXXXXX/videos/XXXXXXXX.m3u8",
-            "2023-01-01.mp4"
+            "2024-01-01.mp4"
         ],
     ],
 }
