@@ -7,10 +7,15 @@ from urllib.parse import urlparse
 
 from yt_dlp import YoutubeDL
 
-COOKIE = os.getenv("COOKIE", "")
 HOME_DIR = os.getenv("HOME", "")
 DATA_PATH = os.getenv("DATA_PATH", "data.json")
 OUTPUT_BASE_DIR = os.getenv("OUTPUT_BASE_DIR", f"{HOME_DIR}/Downloads/data")
+
+COOKIE = os.getenv("COOKIE", "")
+ORIGIN = os.getenv("ORIGIN", "")
+REFERER = os.getenv("REFERER", "")
+USER_AGENT = os.getenv("USER_AGENT", "")
+
 START = int(os.getenv("START", 1))
 
 
@@ -56,8 +61,16 @@ def get_command_for_video(url: str, output_path: str) -> str:
     """
     動画をダウンロードするためのコマンドを取得する.
     """
-    if COOKIE:
-        return f'ffmpeg -headers "Cookie: {COOKIE}" -i "{url}" -c copy "{output_path}"'
+    headers: dict[str, str] = {}
+
+    headers |= {"Cookie": COOKIE} if COOKIE else {}
+    headers |= {"Origin": ORIGIN} if ORIGIN else {}
+    headers |= {"Referer": REFERER} if REFERER else {}
+    headers |= {"User-Agent": USER_AGENT} if USER_AGENT else {}
+
+    if headers:
+        headers_str = "\r\n".join(f"{key}: {value}" for key, value in headers.items())
+        return f'ffmpeg -headers "{headers_str}" -i "{url}" -c copy "{output_path}"'
     else:
         return f'ffmpeg -i "{url}" -c copy "{output_path}"'
 
